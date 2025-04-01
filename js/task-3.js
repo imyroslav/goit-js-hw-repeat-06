@@ -10,23 +10,34 @@ class StringBuilder {
     }
 
     getValue() {
-        return this.#value
+        return this.#value;
     }
 
     padStart(str) {
-        return str
+        this.#value = str + this.#value;
+        return this.#value;
+    }
+
+    padEnd(str) {
+        this.#value = this.#value + str;
+        return this.#value
     }
 
     padBoth(str) {
-        return str + this.#value + str
+        this.#value = str + this.#value + str;
+        return this.#value;
     }
+
 }
 
 const builder = new StringBuilder(".");
 console.log(builder.getValue()); // "."
 
-builder.getStart("^");
+builder.padStart("^");
 console.log(builder.getValue()); // "^."
+
+builder.padEnd("^");
+console.log(builder.getValue()); // "^.^"
 
 builder.padBoth("=");
 console.log(builder.getValue()); // "=^.^="
